@@ -1,0 +1,11 @@
+FROM continuumio/anaconda3
+
+RUN conda install -c conda-forge jupyterlab &&\
+    conda install -c fastai fastai &&\
+    pip install -U pillow_simd==6.2.2.post1.
+
+COPY vision /opt/vision
+
+
+
+
