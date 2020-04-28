@@ -131,3 +131,4 @@ dmypy.json
 /vision/data/
 /vision/notebooks/data/bears/models/
 /vision/notebooks/data/
+/nlp/data/
