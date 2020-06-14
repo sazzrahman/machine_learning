@@ -1,0 +1,357 @@
+{
+  "paragraphs": [
+    {
+      "text": "var greeting \u003d \"Hello World\";\nvar goodbye:String \u003d \"See you again\"",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 9:14:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "greeting: String \u003d Hello World\ngoodbye: String \u003d See you again\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591996412924_413299796",
+      "id": "20200612-211332_1585750463",
+      "dateCreated": "Jun 12, 2020 9:13:32 PM",
+      "dateStarted": "Jun 12, 2020 9:14:49 PM",
+      "dateFinished": "Jun 12, 2020 9:14:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "goodbye",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 9:14:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res114: String \u003d See you again\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591996434814_-1091807252",
+      "id": "20200612-211354_1156566338",
+      "dateCreated": "Jun 12, 2020 9:13:54 PM",
+      "dateStarted": "Jun 12, 2020 9:14:58 PM",
+      "dateFinished": "Jun 12, 2020 9:14:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "object Demo{\n    val greeting:String \u003d  \"Hey Snow\"\n    \n    def main(args: Array[String]){\n        println(greeting)\n    }\n}",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 9:17:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "defined object Demo\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591996442757_34752851",
+      "id": "20200612-211402_27108058",
+      "dateCreated": "Jun 12, 2020 9:14:02 PM",
+      "dateStarted": "Jun 12, 2020 9:17:26 PM",
+      "dateFinished": "Jun 12, 2020 9:17:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var z \u003d Array(\"Zara\",\"Nuha\",\"Ayan\")",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 9:32:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "z: Array[String] \u003d Array(Zara, Nuha, Ayan)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591997179777_-1443980023",
+      "id": "20200612-212619_1899254512",
+      "dateCreated": "Jun 12, 2020 9:26:19 PM",
+      "dateStarted": "Jun 12, 2020 9:32:20 PM",
+      "dateFinished": "Jun 12, 2020 9:32:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "z.map(x \u003d\u003e x.charAt(0))",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 10:01:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res137: Array[Char] \u003d Array(Z, N, A)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591997220295_148172222",
+      "id": "20200612-212700_1614931589",
+      "dateCreated": "Jun 12, 2020 9:27:00 PM",
+      "dateStarted": "Jun 12, 2020 10:01:26 PM",
+      "dateFinished": "Jun 12, 2020 10:01:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "def f(x:Any) \u003d println(x)\nf(\"hello\")",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 9:56:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "f: (x: Any)Unit\nhello\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591997644141_1148313047",
+      "id": "20200612-213404_1643671092",
+      "dateCreated": "Jun 12, 2020 9:34:04 PM",
+      "dateStarted": "Jun 12, 2020 9:56:39 PM",
+      "dateFinished": "Jun 12, 2020 9:56:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val words \u003d \"hello zombie hey\"\nval someArray \u003d words.split(\" \").filter(x\u003d\u003e x.length\u003e\u003d5).map(x\u003d\u003ex.reverse)\nsomeArray",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 10:34:31 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "words: String \u003d hello zombie hey\nsomeArray: Array[String] \u003d Array(olleh, eibmoz)\nres153: Array[String] \u003d Array(olleh, eibmoz)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591998969008_1423111297",
+      "id": "20200612-215609_1789205745",
+      "dateCreated": "Jun 12, 2020 9:56:09 PM",
+      "dateStarted": "Jun 12, 2020 10:34:31 PM",
+      "dateFinished": "Jun 12, 2020 10:34:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val wordsArray \u003d Array(\"helloooo\",\"sza\",\"nonono\")\n\ndef spin(x:String):String\u003d {\n    if(x.length\u003e\u003d5) return x.reverse\n    else return x\n}\n\nwordsArray.map(spin)\n",
+      "user": "anonymous",
+      "dateUpdated": "Jun 13, 2020 12:06:09 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "wordsArray: Array[String] \u003d Array(helloooo, sza, nonono)\nspin: (x: String)String\nres302: Array[String] \u003d Array(oooolleh, sza, ononon)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591999842389_1331995326",
+      "id": "20200612-221042_1681602063",
+      "dateCreated": "Jun 12, 2020 10:10:42 PM",
+      "dateStarted": "Jun 13, 2020 12:06:09 AM",
+      "dateFinished": "Jun 13, 2020 12:06:10 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 11:36:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "outArray: Array[String] \u003d Array()\n\u003cconsole\u003e:57: error: recursive value outArray needs type\n       val outArray \u003d \"shoe\" +: outArray\n                                ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1592001322546_-675938617",
+      "id": "20200612-223522_437739190",
+      "dateCreated": "Jun 12, 2020 10:35:22 PM",
+      "dateStarted": "Jun 12, 2020 11:36:16 PM",
+      "dateFinished": "Jun 12, 2020 11:36:16 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1592003023009_-1508097413",
+      "id": "20200612-230343_2102962656",
+      "dateCreated": "Jun 12, 2020 11:03:43 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Scala Basic Syntax",
+  "id": "2F9PV7YSP",
+  "angularObjects": {
+    "2FAN8DEUJ:shared_process": [],
+    "2FBA475HG:shared_process": [],
+    "2FBRFTXTJ:shared_process": [],
+    "2FC82AQE2:shared_process": [],
+    "2FDFRWTZD:shared_process": [],
+    "2FAJEZF3J:shared_process": [],
+    "2FB6H9MNZ:shared_process": [],
+    "2FCHJ2ZHA:shared_process": [],
+    "2FDJSK9C6:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

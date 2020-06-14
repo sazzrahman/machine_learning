@@ -127,8 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/data/
 /vision/data/
 /vision/notebooks/data/bears/models/
 /vision/notebooks/data/
 /nlp/data/
+/spark/data/

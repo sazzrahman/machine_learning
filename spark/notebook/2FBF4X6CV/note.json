@@ -1,0 +1,357 @@
+{
+  "paragraphs": [
+    {
+      "text": "\nimport org.apache.spark.sql.SparkSession\n\nval spark \u003d SparkSession.builder\n    .master(\"local[*]\")\n    .appName(\"lambda\")\n    .getOrCreate()",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 4:28:40 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\nspark: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@592e6ff8\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591978155336_-1851857146",
+      "id": "20200612-160915_1551924527",
+      "dateCreated": "Jun 12, 2020 4:09:15 PM",
+      "dateStarted": "Jun 12, 2020 4:15:09 PM",
+      "dateFinished": "Jun 12, 2020 4:15:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// for importing Schema\n\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.types._\n\n\nval schema \u003d StructType(\n  StructField(\"ip_src\", StringType, nullable \u003d true) ::\n    StructField(\"ip_dst\", StringType, nullable \u003d true) ::\n    StructField(\"ip_len\", DoubleType, nullable \u003d true) ::\n    StructField(\"eth_src\", StringType, nullable \u003d true) ::\n    StructField(\"eth_dst\", StringType, nullable \u003d true) ::\n    StructField(\"tcp_src_port\", IntegerType, nullable \u003d true) ::\n    StructField(\"tcp_dst_port\", IntegerType, nullable \u003d true) ::\n    StructField(\"frame_time_epoch\", StringType, nullable \u003d true) ::\n    StructField(\"frame_len\", DoubleType, nullable \u003d true) ::\n    StructField(\"frame_protocols\", StringType, nullable \u003d true) ::\n    StructField(\"frame_time\", TimestampType, nullable \u003d true) ::\n    Nil\n)",
+      "user": "anonymous",
+      "dateUpdated": "Jun 13, 2020 2:36:41 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql._\nimport org.apache.spark.sql.types._\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(ip_src,StringType,true), StructField(ip_dst,StringType,true), StructField(ip_len,DoubleType,true), StructField(eth_src,StringType,true), StructField(eth_dst,StringType,true), StructField(tcp_src_port,IntegerType,true), StructField(tcp_dst_port,IntegerType,true), StructField(frame_time_epoch,StringType,true), StructField(frame_len,DoubleType,true), StructField(frame_protocols,StringType,true), StructField(frame_time,TimestampType,true))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591978331445_1375091531",
+      "id": "20200612-161211_355329972",
+      "dateCreated": "Jun 12, 2020 4:12:11 PM",
+      "dateStarted": "Jun 12, 2020 4:28:08 PM",
+      "dateFinished": "Jun 12, 2020 4:28:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val df \u003d spark.read.format(\"csv\")\r\n  .option(\"header\", value \u003d true)\r\n  .option(\"delimiter\", \"|\")\r\n  .option(\"mode\", \"DROPMALFORMED\")\r\n  .option(\"timestampFormat\", \"MMM dd yyyy HH:mm:ss\")\r\n  .schema(schema)\r\n  .load(\"/usr/zeppelin/data/data_tshark.csv\")\r\n  .cache()\r\ndf.printSchema()\r\ndf.show(truncate \u003d false)",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 4:44:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [ip_src: string, ip_dst: string ... 9 more fields]\nroot\n |-- ip_src: string (nullable \u003d true)\n |-- ip_dst: string (nullable \u003d true)\n |-- ip_len: double (nullable \u003d true)\n |-- eth_src: string (nullable \u003d true)\n |-- eth_dst: string (nullable \u003d true)\n |-- tcp_src_port: integer (nullable \u003d true)\n |-- tcp_dst_port: integer (nullable \u003d true)\n |-- frame_time_epoch: string (nullable \u003d true)\n |-- frame_len: double (nullable \u003d true)\n |-- frame_protocols: string (nullable \u003d true)\n |-- frame_time: timestamp (nullable \u003d true)\n\n+-------------+----------+------+-----------------+-----------------+------------+------------+--------------------+---------+------------------------------+-------------------+\n|ip_src       |ip_dst    |ip_len|eth_src          |eth_dst          |tcp_src_port|tcp_dst_port|frame_time_epoch    |frame_len|frame_protocols               |frame_time         |\n+-------------+----------+------+-----------------+-----------------+------------+------------+--------------------+---------+------------------------------+-------------------+\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.377844893|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.409645002|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|663.0 |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.411313023|677.0    |eth:ethertype:ip:tcp:http:json|2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.576824671|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578258771|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578311245|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578314693|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578317422|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578325788|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578333874|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578337225|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578340145|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612776493|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612823945|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612827399|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612829983|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612832437|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612835071|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612837306|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612839589|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|\n+-------------+----------+------+-----------------+-----------------+------------+------------+--------------------+---------+------------------------------+-------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591978679278_-2051394041",
+      "id": "20200612-161759_86826751",
+      "dateCreated": "Jun 12, 2020 4:17:59 PM",
+      "dateStarted": "Jun 12, 2020 4:44:20 PM",
+      "dateFinished": "Jun 12, 2020 4:44:23 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val tDf \u003d df.withColumn(\"timestamp\",unix_timestamp($\"frame_time\"))\ntDf.show(truncate\u003dfalse)",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 4:47:24 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "tDf: org.apache.spark.sql.DataFrame \u003d [ip_src: string, ip_dst: string ... 10 more fields]\n+-------------+----------+------+-----------------+-----------------+------------+------------+--------------------+---------+------------------------------+-------------------+----------+\n|ip_src       |ip_dst    |ip_len|eth_src          |eth_dst          |tcp_src_port|tcp_dst_port|frame_time_epoch    |frame_len|frame_protocols               |frame_time         |timestamp |\n+-------------+----------+------+-----------------+-----------------+------------+------------+--------------------+---------+------------------------------+-------------------+----------+\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.377844893|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.409645002|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|663.0 |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.411313023|677.0    |eth:ethertype:ip:tcp:http:json|2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.576824671|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578258771|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578311245|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|64.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578314693|78.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578317422|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578325788|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578333874|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578337225|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.578340145|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612776493|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612823945|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612827399|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612829983|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612832437|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612835071|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612837306|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n|128.82.14.103|10.128.0.3|52.0  |42:01:0a:80:00:01|42:01:0a:80:00:03|59005       |7654        |1580527185.612839589|66.0     |eth:ethertype:ip:tcp          |2020-02-01 03:19:45|1580527185|\n+-------------+----------+------+-----------------+-----------------+------------+------------+--------------------+---------+------------------------------+-------------------+----------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591978692761_-1520978549",
+      "id": "20200612-161812_409757517",
+      "dateCreated": "Jun 12, 2020 4:18:12 PM",
+      "dateStarted": "Jun 12, 2020 4:47:24 PM",
+      "dateFinished": "Jun 12, 2020 4:47:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Apache Spark One can do different aggregattion to different columns based on the same window. \n\n\nval gDf \u003d tDf\n    .groupBy(\n        window($\"frame_time\", \"1 minutes\")\n        .alias(\"time_window\"),$\"ip_src\",$\"frame_protocols\"\n        )\n    .agg(\n        count(\"*\").as(\"count\"),\n        avg(\"ip_len\").as(\"ip_avg_len\"),\n        avg(\"frame_len\").as(\"frame_avg_len\"),\n        (avg(\"ip_len\") / max(\"ip_len\")).as(\"ip_local_anomaly\"),\n        (avg(\"ip_len\")/max(\"frame_len\")).as(\"frame_local_anomaly\"))\n    .withColumn(\"start\",col(\"time_window\")(\"start\"))\n    .withColumn(\"end\",col(\"time_window\")(\"end\"))\ngDf.printSchema()\ngDf.show(truncate\u003dfalse)\n",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 6:00:36 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "gDf: org.apache.spark.sql.DataFrame \u003d [time_window: struct\u003cstart: timestamp, end: timestamp\u003e, ip_src: string ... 8 more fields]\nroot\n |-- time_window: struct (nullable \u003d true)\n |    |-- start: timestamp (nullable \u003d true)\n |    |-- end: timestamp (nullable \u003d true)\n |-- ip_src: string (nullable \u003d true)\n |-- frame_protocols: string (nullable \u003d true)\n |-- count: long (nullable \u003d false)\n |-- ip_avg_len: double (nullable \u003d true)\n |-- frame_avg_len: double (nullable \u003d true)\n |-- ip_local_anomaly: double (nullable \u003d true)\n |-- frame_local_anomaly: double (nullable \u003d true)\n |-- start: timestamp (nullable \u003d true)\n |-- end: timestamp (nullable \u003d true)\n\n+---------------------------------------------+--------------+--------------------------------+-----+------------------+-----------------+-------------------+-------------------+-------------------+-------------------+\n|time_window                                  |ip_src        |frame_protocols                 |count|ip_avg_len        |frame_avg_len    |ip_local_anomaly   |frame_local_anomaly|start              |end                |\n+---------------------------------------------+--------------+--------------------------------+-----+------------------+-----------------+-------------------+-------------------+-------------------+-------------------+\n|[2020-02-01 03:56:00.0,2020-02-01 03:57:00.0]|35.193.233.111|eth:ethertype:ip:tcp:http       |11572|52.0              |66.0             |1.0                |0.7878787878787878 |2020-02-01 03:56:00|2020-02-01 03:57:00|\n|[2020-02-01 03:46:00.0,2020-02-01 03:47:00.0]|128.82.13.247 |eth:ethertype:ip:tcp:http:json  |1    |1077.0            |1091.0           |1.0                |0.9871677360219981 |2020-02-01 03:46:00|2020-02-01 03:47:00|\n|[2020-02-01 03:56:00.0,2020-02-01 03:57:00.0]|35.193.233.111|eth:ethertype:ip:tcp:ecatf:tc_nv|1    |192.0             |206.0            |1.0                |0.9320388349514563 |2020-02-01 03:56:00|2020-02-01 03:57:00|\n|[2020-02-01 03:50:00.0,2020-02-01 03:51:00.0]|128.82.14.103 |eth:ethertype:ip:tcp:http:xml   |27   |507.51851851851853|521.5185185185185|0.9816605774052583 |0.955778754272163  |2020-02-01 03:50:00|2020-02-01 03:51:00|\n|[2020-02-01 03:55:00.0,2020-02-01 03:56:00.0]|35.193.233.111|eth:ethertype:ip:tcp            |59002|82.63416494356123 |96.63416494356123|0.3972796391517367 |0.37222596821423976|2020-02-01 03:55:00|2020-02-01 03:56:00|\n|[2020-02-01 04:10:00.0,2020-02-01 04:11:00.0]|10.128.0.3    |eth:ethertype:ip:tcp            |4    |54.0              |68.0             |0.9                |0.7297297297297297 |2020-02-01 04:10:00|2020-02-01 04:11:00|\n|[2020-02-01 03:50:00.0,2020-02-01 03:51:00.0]|128.82.14.103 |eth:ethertype:ip:tcp:http:json  |1    |709.0             |723.0            |1.0                |0.9806362378976486 |2020-02-01 03:50:00|2020-02-01 03:51:00|\n|[2020-02-01 03:54:00.0,2020-02-01 03:55:00.0]|10.128.0.3    |eth:ethertype:ip:tcp:http       |1534 |52.0              |66.0             |1.0                |0.7878787878787878 |2020-02-01 03:54:00|2020-02-01 03:55:00|\n|[2020-02-01 03:22:00.0,2020-02-01 03:23:00.0]|128.82.13.247 |eth:ethertype:ip:tcp            |56   |740.6428571428571 |754.6428571428571|0.5072896281800391 |0.5024714091878271 |2020-02-01 03:22:00|2020-02-01 03:23:00|\n|[2020-02-01 03:48:00.0,2020-02-01 03:49:00.0]|35.193.233.111|eth:ethertype:ip:tcp            |2707 |81.89545622460288 |95.89545622460288|0.37566723038808664|0.35299765614052964|2020-02-01 03:48:00|2020-02-01 03:49:00|\n|[2020-02-01 03:54:00.0,2020-02-01 03:55:00.0]|35.193.233.111|eth:ethertype:ip:tcp            |7732 |82.84441282979824 |96.84441282979824|0.39829044629710697|0.37317303076485697|2020-02-01 03:54:00|2020-02-01 03:55:00|\n|[2020-02-01 04:00:00.0,2020-02-01 04:01:00.0]|128.82.13.247 |eth:ethertype:ip:tcp:http       |1    |184.0             |198.0            |1.0                |0.9292929292929293 |2020-02-01 04:00:00|2020-02-01 04:01:00|\n|[2020-02-01 03:46:00.0,2020-02-01 03:47:00.0]|10.128.0.3    |eth:ethertype:ip:tcp            |4    |54.0              |68.0             |0.9                |0.7297297297297297 |2020-02-01 03:46:00|2020-02-01 03:47:00|\n|[2020-02-01 03:52:00.0,2020-02-01 03:53:00.0]|128.82.13.247 |eth:ethertype:ip:tcp            |2060 |54.40582524271845 |68.40582524271845|0.8500910194174758 |0.6975105800348519 |2020-02-01 03:52:00|2020-02-01 03:53:00|\n|[2020-02-01 03:19:00.0,2020-02-01 03:20:00.0]|128.82.14.103 |eth:ethertype:ip:tcp:http:json  |2    |686.0             |700.0            |0.9675599435825106 |0.9488243430152143 |2020-02-01 03:19:00|2020-02-01 03:20:00|\n|[2020-02-01 04:00:00.0,2020-02-01 04:01:00.0]|35.193.233.111|eth:ethertype:ip:tcp:http       |1    |52.0              |66.0             |1.0                |0.7878787878787878 |2020-02-01 04:00:00|2020-02-01 04:01:00|\n|[2020-02-01 03:46:00.0,2020-02-01 03:47:00.0]|35.193.233.111|eth:ethertype:ip:tcp            |4    |54.0              |68.0             |0.9                |0.7297297297297297 |2020-02-01 03:46:00|2020-02-01 03:47:00|\n|[2020-02-01 03:53:00.0,2020-02-01 03:54:00.0]|128.82.13.247 |eth:ethertype:ip:tcp            |1560 |54.39230769230769 |68.3923076923077 |0.8498798076923076 |0.6973372781065088 |2020-02-01 03:53:00|2020-02-01 03:54:00|\n|[2020-02-01 03:53:00.0,2020-02-01 03:54:00.0]|128.82.14.103 |eth:ethertype:ip:tcp:http:xml   |281  |508.9608540925267 |522.9608540925267|0.9768922343426616 |0.9513286992383676 |2020-02-01 03:53:00|2020-02-01 03:54:00|\n|[2020-02-01 03:48:00.0,2020-02-01 03:49:00.0]|10.128.0.3    |eth:ethertype:ip:tcp:http       |527  |52.0              |66.0             |1.0                |0.7878787878787878 |2020-02-01 03:48:00|2020-02-01 03:49:00|\n+---------------------------------------------+--------------+--------------------------------+-----+------------------+-----------------+-------------------+-------------------+-------------------+-------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591980089330_-592633125",
+      "id": "20200612-164129_1938736840",
+      "dateCreated": "Jun 12, 2020 4:41:29 PM",
+      "dateStarted": "Jun 12, 2020 6:00:36 PM",
+      "dateFinished": "Jun 12, 2020 6:00:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val cond \u003d tDf(\"ip_src\")\u003d\u003d\u003dtDf(\"ip_src\") \u0026\u0026 tDf(\"frame_protocols\")\u003d\u003d\u003dtDf(\"frame_protocols\") \u0026\u0026 tDf(\"frame_time\") \u003e\u003d gDf(\"start\") \u0026\u0026 tDf(\"frame_time\") \u003c\u003d gDf(\"end\")\n\nval jDf \u003d tDf\n    .join(gDf, cond, \"left\")\n    .select(tDf(\"ip_src\"), tDf(\"ip_dst\"), tDf(\"ip_len\"), tDf(\"tcp_src_port\"), tDf(\"tcp_dst_port\"),\n    tDf(\"frame_protocols\"), tDf(\"frame_len\"), tDf(\"frame_time\"), tDf(\"timestamp\"),\n    gDf(\"ip_avg_len\"), gDf(\"frame_avg_len\"), gDf(\"ip_local_anomaly\"), gDf(\"frame_local_anomaly\"),\n    gDf(\"count\"))\n    \njDf.show(truncate\u003dfalse)",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 6:00:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "cond: org.apache.spark.sql.Column \u003d ((((ip_src \u003d ip_src) AND (frame_protocols \u003d frame_protocols)) AND (frame_time \u003e\u003d start)) AND (frame_time \u003c\u003d end))\njDf: org.apache.spark.sql.DataFrame \u003d [ip_src: string, ip_dst: string ... 12 more fields]\n+--------------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+\n|ip_src        |ip_dst        |ip_len|tcp_src_port|tcp_dst_port|frame_protocols          |frame_len|frame_time         |timestamp |ip_avg_len|frame_avg_len|ip_local_anomaly|frame_local_anomaly|count|\n+--------------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+\n|35.193.233.111|10.128.0.3    |569.0 |33119       |7654        |eth:ethertype:ip:tcp:ssl |583.0    |2020-02-01 03:46:25|1580528785|569.0     |583.0        |1.0             |0.9759862778730704 |1    |\n|10.128.0.3    |35.193.233.111|52.0  |36615       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:47:33|1580528853|52.0      |66.0         |1.0             |0.7878787878787878 |1    |\n|10.128.0.3    |35.193.233.111|52.0  |44041       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |41813       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |46351       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |45799       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |39401       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |33147       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |43123       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |32827       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |42805       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |44507       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |45797       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |41815       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |46189       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |35207       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |41031       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |34527       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |40415       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n|10.128.0.3    |35.193.233.111|52.0  |34273       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |\n+--------------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591981706748_-90406115",
+      "id": "20200612-170826_655887961",
+      "dateCreated": "Jun 12, 2020 5:08:26 PM",
+      "dateStarted": "Jun 12, 2020 6:00:45 PM",
+      "dateFinished": "Jun 12, 2020 6:00:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.ml.feature.{VectorAssembler}\nval cols \u003d Array(\"ip_avg_len\", \"frame_avg_len\", \"ip_local_anomaly\", \"frame_local_anomaly\", \"count\")\nval ass \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval fDf \u003d ass.transform(jDf)\nfDf.printSchema()\nfDf.show(truncate\u003dfalse)",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2020 7:40:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.ml.feature.VectorAssembler\ncols: Array[String] \u003d Array(ip_avg_len, frame_avg_len, ip_local_anomaly, frame_local_anomaly, count)\nass: org.apache.spark.ml.feature.VectorAssembler \u003d vecAssembler_274c638ad8b5\nfDf: org.apache.spark.sql.DataFrame \u003d [ip_src: string, ip_dst: string ... 13 more fields]\nroot\n |-- ip_src: string (nullable \u003d true)\n |-- ip_dst: string (nullable \u003d true)\n |-- ip_len: double (nullable \u003d true)\n |-- tcp_src_port: integer (nullable \u003d true)\n |-- tcp_dst_port: integer (nullable \u003d true)\n |-- frame_protocols: string (nullable \u003d true)\n |-- frame_len: double (nullable \u003d true)\n |-- frame_time: timestamp (nullable \u003d true)\n |-- timestamp: long (nullable \u003d true)\n |-- ip_avg_len: double (nullable \u003d true)\n |-- frame_avg_len: double (nullable \u003d true)\n |-- ip_local_anomaly: double (nullable \u003d true)\n |-- frame_local_anomaly: double (nullable \u003d true)\n |-- count: long (nullable \u003d true)\n |-- features: vector (nullable \u003d true)\n\n+--------------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+----------------------------------------+\n|ip_src        |ip_dst        |ip_len|tcp_src_port|tcp_dst_port|frame_protocols          |frame_len|frame_time         |timestamp |ip_avg_len|frame_avg_len|ip_local_anomaly|frame_local_anomaly|count|features                                |\n+--------------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+----------------------------------------+\n|35.193.233.111|10.128.0.3    |569.0 |33119       |7654        |eth:ethertype:ip:tcp:ssl |583.0    |2020-02-01 03:46:25|1580528785|569.0     |583.0        |1.0             |0.9759862778730704 |1    |[569.0,583.0,1.0,0.9759862778730704,1.0]|\n|10.128.0.3    |35.193.233.111|52.0  |36615       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:47:33|1580528853|52.0      |66.0         |1.0             |0.7878787878787878 |1    |[52.0,66.0,1.0,0.7878787878787878,1.0]  |\n|10.128.0.3    |35.193.233.111|52.0  |44041       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |41813       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |46351       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |45799       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |39401       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |33147       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |43123       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |32827       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |42805       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |44507       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |45797       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |41815       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |46189       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |35207       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |41031       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |34527       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |40415       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n|10.128.0.3    |35.193.233.111|52.0  |34273       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:56|1580528936|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]|\n+--------------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+----------------------------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591984092367_-1758491288",
+      "id": "20200612-174812_1302573451",
+      "dateCreated": "Jun 12, 2020 5:48:12 PM",
+      "dateStarted": "Jun 12, 2020 7:40:23 PM",
+      "dateFinished": "Jun 12, 2020 7:40:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// split dataset into training and testing\nimport org.apache.spark.ml.clustering.KMeans\n\nval seed \u003d 5043\nval Array(trnDta, tstDta) \u003d fDf.randomSplit(Array(0.7,0.3),seed)\n\n// kmeans model with 2 clusters\nval kmeans \u003d new KMeans()\n    .setK(2)\n    .setFeaturesCol(\"features\")\n    .setPredictionCol(\"prediction\")\n\nval model \u003d kmeans.fit(trnDta)\nmodel.clusterCenters.foreach(println)\n\n\nval pDf \u003d model.transform(tstDta)\npDf.show(truncate \u003d false)",
+      "user": "anonymous",
+      "dateUpdated": "Jun 13, 2020 2:30:39 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.ml.clustering.KMeans\nseed: Int \u003d 5043\ntrnDta: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [ip_src: string, ip_dst: string ... 13 more fields]\ntstDta: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [ip_src: string, ip_dst: string ... 13 more fields]\nkmeans: org.apache.spark.ml.clustering.KMeans \u003d kmeans_c70e60fb36d9\nmodel: org.apache.spark.ml.clustering.KMeansModel \u003d kmeans_c70e60fb36d9\n[82.55081415326015,96.55081415325964,0.396878914198174,0.3718505142040096,58422.2125641227]\n[74.89758680607353,88.89758680607356,0.751241076709914,0.6211882497096886,7976.033090304266]\npDf: org.apache.spark.sql.DataFrame \u003d [ip_src: string, ip_dst: string ... 14 more fields]\n+----------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+------------------------------------------+----------+\n|ip_src    |ip_dst        |ip_len|tcp_src_port|tcp_dst_port|frame_protocols          |frame_len|frame_time         |timestamp |ip_avg_len|frame_avg_len|ip_local_anomaly|frame_local_anomaly|count|features                                  |prediction|\n+----------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+------------------------------------------+----------+\n|10.128.0.3|35.193.233.111|52.0  |32768       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:50|1580529410|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32769       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:55:20|1580529320|52.0      |66.0         |1.0             |0.7878787878787878 |11794|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32773       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:54:58|1580529298|52.0      |66.0         |1.0             |0.7878787878787878 |1534 |[52.0,66.0,1.0,0.7878787878787878,1534.0] |1         |\n|10.128.0.3|35.193.233.111|52.0  |32783       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:49:00|1580528940|52.0      |66.0         |1.0             |0.7878787878787878 |1825 |[52.0,66.0,1.0,0.7878787878787878,1825.0] |1         |\n|10.128.0.3|35.193.233.111|52.0  |32788       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:54|1580529414|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32789       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:07|1580529367|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32792       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:55:49|1580529349|52.0      |66.0         |1.0             |0.7878787878787878 |11794|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32793       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:01|1580529361|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32797       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:10|1580529370|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32799       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:48:58|1580528938|52.0      |66.0         |1.0             |0.7878787878787878 |527  |[52.0,66.0,1.0,0.7878787878787878,527.0]  |1         |\n|10.128.0.3|35.193.233.111|52.0  |32799       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:55:04|1580529304|52.0      |66.0         |1.0             |0.7878787878787878 |11794|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32801       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:10|1580529370|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32805       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:55:13|1580529313|52.0      |66.0         |1.0             |0.7878787878787878 |11794|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32805       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:15|1580529375|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32807       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:49:06|1580528946|52.0      |66.0         |1.0             |0.7878787878787878 |1825 |[52.0,66.0,1.0,0.7878787878787878,1825.0] |1         |\n|10.128.0.3|35.193.233.111|52.0  |32807       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:55:02|1580529302|52.0      |66.0         |1.0             |0.7878787878787878 |11794|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32813       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:58|1580529418|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32817       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:54:57|1580529297|52.0      |66.0         |1.0             |0.7878787878787878 |1534 |[52.0,66.0,1.0,0.7878787878787878,1534.0] |1         |\n|10.128.0.3|35.193.233.111|52.0  |32817       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:55:59|1580529359|52.0      |66.0         |1.0             |0.7878787878787878 |11794|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|10.128.0.3|35.193.233.111|52.0  |32828       |7654        |eth:ethertype:ip:tcp:http|66.0     |2020-02-01 03:56:41|1580529401|52.0      |66.0         |1.0             |0.7878787878787878 |11572|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n+----------+--------------+------+------------+------------+-------------------------+---------+-------------------+----------+----------+-------------+----------------+-------------------+-----+------------------------------------------+----------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591985462642_-689299809",
+      "id": "20200612-181102_467988512",
+      "dateCreated": "Jun 12, 2020 6:11:02 PM",
+      "dateStarted": "Jun 13, 2020 2:30:39 AM",
+      "dateFinished": "Jun 13, 2020 2:30:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// it inherits the attributes and methods of Serializable\n\nimport org.apache.spark.sql.expressions.UserDefinedFunction\nimport org.apache.spark.mllib.linalg.Vectors\n\nobject UdfUtil extends Serializable {\n    def distance(centers: Array[Vector]): UserDefinedFunction \u003d udf((features:Vector,c:Int)\u003d\u003e Vectors.sqdist(features,centers(c)))\n}\n\nval vDf \u003d pDf.select($\"timestamp\",$\"features\",$\"prediction\")\nvDf.show(truncate\u003dfalse)\n\n\nval dDf \u003d vDf.withColumn(\"distance\", UdfUtil.distance())\n",
+      "user": "anonymous",
+      "dateUpdated": "Jun 13, 2020 2:32:55 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.expressions.UserDefinedFunction\nimport org.apache.spark.mllib.linalg.Vectors\ndefined object UdfUtil\nvDf: org.apache.spark.sql.DataFrame \u003d [timestamp: bigint, features: vector ... 1 more field]\n+----------+------------------------------------------+----------+\n|timestamp |features                                  |prediction|\n+----------+------------------------------------------+----------+\n|1580529410|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580529320|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|1580529298|[52.0,66.0,1.0,0.7878787878787878,1534.0] |1         |\n|1580528940|[52.0,66.0,1.0,0.7878787878787878,1825.0] |1         |\n|1580529414|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580529367|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580529349|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|1580529361|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580529370|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580528938|[52.0,66.0,1.0,0.7878787878787878,527.0]  |1         |\n|1580529304|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|1580529370|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580529313|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|1580529375|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580528946|[52.0,66.0,1.0,0.7878787878787878,1825.0] |1         |\n|1580529302|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|1580529418|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n|1580529297|[52.0,66.0,1.0,0.7878787878787878,1534.0] |1         |\n|1580529359|[52.0,66.0,1.0,0.7878787878787878,11794.0]|1         |\n|1580529401|[52.0,66.0,1.0,0.7878787878787878,11572.0]|1         |\n+----------+------------------------------------------+----------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591990626877_-75959001",
+      "id": "20200612-193706_1533965709",
+      "dateCreated": "Jun 12, 2020 7:37:06 PM",
+      "dateStarted": "Jun 13, 2020 2:31:40 AM",
+      "dateFinished": "Jun 13, 2020 2:31:42 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1591993995376_-1208283236",
+      "id": "20200612-203315_629135023",
+      "dateCreated": "Jun 12, 2020 8:33:15 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Finding Attack Behaviors",
+  "id": "2FBF4X6CV",
+  "angularObjects": {
+    "2FAN8DEUJ:shared_process": [],
+    "2FBA475HG:shared_process": [],
+    "2FBRFTXTJ:shared_process": [],
+    "2FC82AQE2:shared_process": [],
+    "2FDFRWTZD:shared_process": [],
+    "2FAJEZF3J:shared_process": [],
+    "2FB6H9MNZ:shared_process": [],
+    "2FCHJ2ZHA:shared_process": [],
+    "2FDJSK9C6:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
